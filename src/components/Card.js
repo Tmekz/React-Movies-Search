@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import axios from "axios";
 
-const Card = ({ movie, isFavoritePage }) => {
+const Card = ({ movie, isFavoritePage, removeFromFavorites }) => {
   const [message, setMessage] = useState("Ajouter aux coups de coeur");
   const [genreList, setGenreList] = useState([]);
 
@@ -122,7 +122,7 @@ const Card = ({ movie, isFavoritePage }) => {
           className="btn"
           onClick={() => {
             deleteStorage();
-            window.location.reload();
+            removeFromFavorites(movie.id);
           }}
         >
           Supprimer de la liste

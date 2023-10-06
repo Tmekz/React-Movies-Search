@@ -38,6 +38,14 @@ const LikePage = () => {
     fetchData();
   }, []);
 
+  const removeFromFavorites = (movieId) => {
+    // Mettez à jour la liste des favoris sans le film supprimé
+    const updatedList = listData.filter((movie) => movie.id !== movieId);
+    setListData(updatedList);
+    
+    // Mettez également à jour le localStorage ici si nécessaire
+  };
+
   return (
     <div>
       <Header />
@@ -47,7 +55,7 @@ const LikePage = () => {
       <div className="form-result">
         {listData.length > 0 ? (
           listData.map((movie) => (
-            <Card movie={movie} isFavoritePage={true} key={movie.id} />
+            <Card movie={movie} isFavoritePage={true} key={movie.id} removeFromFavorites={removeFromFavorites}/>
           ))
         ) : (
           <h2> Aucun coup de coeur pour le moment</h2>
